@@ -1,0 +1,113 @@
+#quick-links {
+	position:relative;
+	background:white;
+	font-size:9pt;	
+	 width:100%; 	
+	 margin:0px 0px 0px 0px;
+	margin-bottom:20px;
+	
+	 border:1px solid #d3d3d3;
+	 background:#C8E4EC;
+	 text-align:center;
+	 height:70px;
+	 
+}
+#quick-links ul {
+	
+	display:inline-block;
+	list-style:none;
+	padding:0;
+	margin:0 auto;
+	//margin-right:60px;
+	margin-right:22.5px;
+	margin-top:5px;
+	vertical-align:top;
+	
+	
+}
+#quick-links ul li {
+	
+	display:inline-block;
+	margin-right:30px;
+	white-space:nowrap;
+	padding-top:42px;
+	
+    width:42px;
+	margin-top:0px;
+	
+	position:relative;
+}
+#quick-links ul li {
+	background-image:url(../images/quicklinksprite.png);
+	//background-size:42px 42px;
+	
+	background-repeat:no-repeat;
+	
+	text-align:center;
+}
+
+#quick-links ul li.transitlive {
+	
+    background-position:-337px 0;
+	margin-right:0;
+}
+
+#quick-links ul li.paratransit {
+	
+	 background-position:-138px 0;
+	 
+}
+#quick-links ul li.fares {
+	
+     background-position:-274px 0;
+}
+#quick-links ul li.bus {
+	
+	 background-position:-2px 0;
+}
+#quick-links ul li.bikes {
+	
+	 background-position:-209px 0;
+}
+#quick-links ul li.lightrail {
+	
+	 background-position:-70px 0;
+}
+#quick-links ul li.maps {
+	
+	 background-position:-390px 0;
+	 //margin-right:0;
+}
+
+#quick-links ul li.transitlive  a{
+
+	
+}
+
+#quick-links ul li.paratransit  a{
+	 right:10px;
+}
+#quick-links ul li.fares  a{	
+}
+#quick-links ul li.bus  a{
+}
+#quick-links ul li.bikes  a{
+	right:12px;
+}
+#quick-links ul li.lightrail  a{
+	right:4px;
+}
+
+
+
+#quick-links a:link, #quick-links a:visited {
+	color:#000;
+	text-decoration:none;
+	font-weight:bold;
+	padding-top:42px;
+	position:relative;
+}
+#quick-links a:hover {
+	text-decoration:underline;
+	color:#000;
+}

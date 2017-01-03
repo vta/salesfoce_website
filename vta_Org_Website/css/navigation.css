@@ -1,0 +1,134 @@
+.clearfix{
+	clear:both;
+}
+a img {
+	border: none; 
+}
+label#searchlb {
+	display:block;
+	position: absolute;
+	left: -9999px;
+	top: 0;
+}
+#searchdiv {
+	background:white;
+	right:20%;
+	bottom:20px;
+}
+.searchbox {
+	
+}
+.searchbox input{
+	
+	
+}
+.searchbox #q{
+	vertical-align:middle;
+	display:inline-block;
+	
+}
+.searchbox #searchimg{
+	padding:0;
+	margin:0;
+	display:inline-block;	
+	background:white;
+	border-radius:2px;
+	vertical-align:middle;
+	width:30px;
+	height:20px;
+	background:#4cb4e7;
+}
+
+#searchdiv input[type="image"]{
+border: 1px solid transparent;
+}
+#searchdiv input[type="image"]:active{
+border: 1px inset;
+}
+
+#nav .searchdiv{
+display:none;
+}
+.searchimg{
+padding: 0;
+margin: 0;
+display: inline-block;
+background: white;
+border-radius: 2px;
+vertical-align: middle;
+width: 30px;
+height: 20px;
+background: #a70039;
+}
+
+.menu_button{
+display:none;
+}
+ 
+
+body #languages {
+	
+	margin:0px auto;
+	//margin-bottom:55px!important;
+	visibility: visible;
+	font-size:11px;
+		
+	max-width:1920px;
+	min-width:1036px;
+	
+	
+	
+	
+	height:70px;
+	
+	/* background-color:transparent; */
+	/*background:url('../images/topfade.png') no-repeat; */
+	/*background-size:cover; */
+	/*background-position:20% 50%; */
+	
+	
+	position:relative; 
+	
+}
+body #LargeBanner{
+	background-color:transparent; 
+	background:url('../images/largebannerdefault.jpg') no-repeat;
+	
+	background-size:cover;
+	background-position:50% 50%;
+	
+	height:250px;
+	margin:0px auto;
+	max-width:1920px;
+	min-Width:1036px;
+border-radius: 5px 5px 5px 5px	
+
+
+	
+}
+#banner{
+	 position:relative;
+  }
+#languages .mainLogo{
+	 position:absolute; 
+	 display:block; 
+	 height:100%;  
+	 left:13%; 
+	 top:10px;	
+  }
+#topNavPosition{	
+	position:absolute; 
+	width:100%;  
+	bottom:-28px;
+  } 
+ 
+
+ 
+
+
+
+
+
+
+
+

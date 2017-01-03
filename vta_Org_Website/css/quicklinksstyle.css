@@ -1,0 +1,212 @@
+
+#quick-links {
+    position:relative;
+    background:white;
+    font-size:9pt;  
+     width:100%;    
+     margin:0px 0px 0px 0px;
+    margin-bottom:20px;
+    
+     border:1px solid #d3d3d3;
+   
+    background:#4CB4E7;
+     text-align:center;
+border-radius: 5px;
+     height:70px;
+     border:0;
+     
+}
+#quick-links ul {
+    
+    display:inline-block;
+    list-style:none;
+    padding:0;
+    margin:0 auto;  
+    margin-top:10px;
+    vertical-align:top;
+	
+	max-width:48%;
+	height:65px;
+}
+#quick-links ul li {
+    
+    display:inline-block;
+    margin-right:14px;
+    white-space:nowrap;
+  
+    padding-top:0px;
+     
+    width:56px;
+    margin-top:0px; 
+    
+    position:relative;
+    vertical-align:top;
+	
+	background-size:100%;
+	margin-right:14px;
+	max-width:9%;
+}
+#quick-links ul li {            
+    background-image:url('../images/quicklinksprite.png');
+    background-repeat:no-repeat;    
+    text-align:center;
+}
+
+#quick-links ul li.Routes {   
+    height:65px;
+    vertical-align:top;
+    padding:0;
+    
+}
+#quick-links ul li.Realtime {
+    
+    background-image:url('../images/TP2RealTime.png');
+    
+}
+#quick-links ul li.Webcast {
+    
+    background-image:url('../images/TP2Webcast.png');
+    
+}
+#quick-links ul li.Maps {
+    
+     background-image:url('../images/TP2Maps.png');
+
+}
+#quick-links ul li.Fares {
+    
+     background-image:url('../images/TP2Fares.png');
+
+}
+#quick-links ul li.Paratransit {
+    
+     background-image:url('../images/TP2Paratransit.png');
+    
+}
+#quick-links ul li.Bikeandped {
+    
+      background-image:url('../images/TP2BikeandPed.png');
+    
+}
+
+#quick-links ul li.Routes:hover {
+    background-image:url('../images/TP2RoutesR.png');
+    
+}
+
+#quick-links ul li.Realtime:hover {
+    
+    background-image:url('../images/TP2RealTimeR.png');
+    
+}
+#quick-links ul li.EventService {
+    
+     background-image:url('../images/TP2Event.png');
+
+}
+#quick-links ul li.EventService:hover {
+    
+     background-image:url('../images/TP2EventR.png');
+
+}
+#quick-links ul li.Webcast:hover {
+    
+    background-image:url('../images/TP2WebcastR.png');
+    
+}
+#quick-links ul li.Maps:hover {
+    
+     background-image:url('../images/TP2MapsR.png');
+
+}
+#quick-links ul li.Fares:hover {
+    
+     background-image:url('../images/TP2FaresR.png');
+
+}
+#quick-links ul li.Paratransit:hover {
+    
+     background-image:url('../images/TP2ParatransitR.png');
+    
+}
+#quick-links ul li.Bikeandped:hover {
+    
+      background-image:url('../images/TP2BikeandPedR.png');
+    
+}
+
+
+#quick-links a:link, #quick-links a:visited {
+    color:#4CB4E7;
+    font-size:0; 
+    display:block;
+    width:100%;
+    height:65px; 
+    padding-top:0;    
+    text-decoration:none;
+   
+    
+    position:relative;
+    
+}
+#quick-links a:hover {
+    text-decoration:underline;
+    color:transparent;
+}
+
+#tp_section{
+    background:#4CB4E7; 
+    margin:0px;
+    padding:0px;
+        height:100%;
+border-radius: 0px 5px 5px 0px;
+}
+#tp_section>div{
+    background:#C8E4Ec; 
+    padding:5px;
+    border:2px solid #C8E4Ec;
+border-radius: 0px 5px 5px 0px	
+}
+.Routes{
+	overflow:hidden;
+}
+
+.Routes .routeSelect{
+	width:57px;
+	//width:80px;
+	border:0;
+	padding:0;
+	margin:0;
+	//height:61px;
+	background-image:url('../images/TP2Routes.png');
+	-moz-appearance: none;
+   	-webkit-appearance: none;
+   	appearance: none;
+   	text-indent:0.01px;
+   	text-overflow:'';
+   	display:block;
+	
+	height:100%;
+	width:145%;
+	background-size:70%;		
+	background-repeat:no-repeat;
+   		
+}
+.Routes .routeSelect:hover{
+	filter:none;
+	background-image:url('../images/TP2RoutesR.png');
+	cursor:pointer;
+}
+
+.Routes .routeSelect::-ms-expand{
+	display:none;
+}
+select::-ms-expand{display:none;}
+
+ .mobile-toggle{
+  	display:none;
+ }
+ #tripplannerwidgetmobile{
+	display:none
+}
+
