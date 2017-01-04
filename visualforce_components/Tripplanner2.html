@@ -1,0 +1,253 @@
+<apex:component controller="tripPlanner_Controller" access="global" >
+<script>
+    $j(document).ready(function(){
+        var currentTime = new Date();
+        var hours = currentTime.getHours();
+        var minutes = currentTime.getMinutes();
+
+        function setCurrentTime(date) {
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            minutes=Math.round(minutes/5)*5;
+            var ampm = hours >= 12 ? 'pm' : 'am';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // the hour '0' should be '12'
+            minutes = minutes < 10 ? '0'+minutes : minutes;
+            // var strTime = hours + ':' + minutes + ' ' + ampm;
+            $j('.inputForm[name="hour"]').val(hours);
+            $j('.inputForm[name="minute"]').val(minutes);
+            $j('.inputForm[name="period"]').val(ampm);
+            //return strTime;
+        }
+        setCurrentTime(new Date());
+
+        $j('#topTripplannerForm').submit(function(){
+            hour=$j('.inputForm[name="hour"] option:selected').text();
+            minute=$j('.inputForm[name="minute"] option:selected').text();
+            period=$j('.inputForm[name="period"] option:selected').text();
+            timeString=hour+':'+minute+period;
+
+            $j('#timeField').attr('value',timeString);
+        });
+
+    });
+
+    function storeWebTrip(){
+        var pageView = {};
+        pageView.origin = document.getElementById('from').value;
+        pageView.destination = document.getElementById('to').value;
+        pageView.type = document.getElementById('ttype').value;
+        pageView.d = document.getElementById('datepicker').value;
+        pageView.t = document.getElementById('hour').value+':'+document.getElementById('minute').value+' '+document.getElementById('period').value;
+        storeTrip(pageView);
+    }
+
+    function storeMobileTrip(){
+        var pageView = {};
+        pageView.origin = document.getElementById('saddr').value;
+        pageView.destination = document.getElementById('daddr').value;
+        pageView.type = document.getElementById('tpwleave').checked ? 'dep' : 'arr';
+        pageView.d = document.getElementById('tpwdatepicker').value;
+        pageView.t = document.getElementById('tpwTime').value;
+        storeTrip(pageView);
+    }
+
+    function storeTrip(pageView){
+        var x = JSON.stringify(pageView);
+        console.log("tripplanner2", pageView);
+        Visualforce.remoting.Manager.invokeAction(
+            '{!$RemoteAction.tripPlanner_Controller.saveTrip}',
+            x,
+            function(result, event){
+                console.log(result);
+            },
+            {escape: true}
+        );
+    }
+</script>
+<div id="quick-links">
+    <script>
+        function toggleQuicklinks(){
+            $j('#quick-links').toggleClass('toggled');
+        }
+    </script>
+    <div class="mobile-toggle">
+        <a class="menu_button" href="javascript:void(0)" onclick="toggleQuicklinks()">
+                       Open Menu
+        </a>
+    </div>
+    <ul>
+        <li class="Routes">
+            <c:Route_Select_Drop_Down />
+        </li>
+        <li class="Realtime">
+            <a href="/Getting-Around/Transit-Live/Real-Time-Map">Real Time</a>
+        </li>
+        <li  class="Maps">
+            <a href="/getting-around/maps/bus-rail-map">Maps</a>
+        </li>
+        <li  class="Fares">
+            <a href="/Getting-Around/fares">Fares</a>
+        </li>
+        <li  class="EventService">
+            <a href="/getting-around/event-service">Event Service</a>
+        </li>
+        <li class="Webcast">
+            <a href="/News-and-Media/Multimedia/Webcasts">Webcast</a>
+        </li>
+        <li class="Paratransit">
+            <a href="/getting-around/paratransit/accessibility">Accessibility</a>
+        </li>
+        <li class="Bikeandped">
+            <a href="/getting-around/Bike-and-Pedestrian/Bike-Pedestrian">Bike &amp; Ped</a>
+        </li>
+    </ul>
+    <!-- https://www.google.com/maps?action=log_trip&daddr=447+Great+Mall+Dr.+Milpitas&date=8/9/2013&f=d&ie=UTF8&saddr=3331+North+First+St,+San+Jose&time=1:16pm&ttype=dep&dirflg=r
+    -->
+    <div id="tp_section">
+        <div>
+            <table  border="0" cellpadding="0" cellspacing="0">
+<!--
+                <form method="get" id="topTripplannerForm" class="trip_planner_form" target="_blank" action="//www.google.com/maps" name="trip_planner_form" onSubmit="return message_box(this);">
+-->
+                <form method="get" id="topTripplannerForm" class="trip_planner_form" target="_blank" action="//www.google.com/maps" name="trip_planner_form" onSubmit="return storeWebTrip();">
+                    <tr id="tp_row1">
+                        <td id="tp_headerCol" rowspan="2">
+                            <h1 style="margin:0px; margin-bottom:5px; padding:0px;">Trip</h1><h1 style="padding:0px; margin:0px; line-height:1em;">Planner</h1>
+                        </td>
+                        <td colspan="2">
+                            <INPUT class="inputForm" name="saddr" type="text" id="from"  placeholder="Enter address (use city or zip) or Stop ID"  title="Trip Starting Address - Enter the address (use city or zip) or Stop ID of where you plan to start your trip"></input><br />
+                        </td>
+                        <td colspan="2">
+                            <INPUT class="inputForm" name="daddr" type="text" id="to"  placeholder="Destination address or Stop ID" title="Trip Destination Address - Enter the address (use city or zip) or Stop ID of where you would like to go"></input><br/>
+                        </td>
+                        <input type="hidden" name="ie" value="UTF8" /><input type="hidden" name="f" value="d" /> <input type="hidden" name="dirflg" value="r" />
+                        <input type="hidden" name="output" value="classic" />
+                    </tr>
+                    <tr id="tp_row2">
+                        <td style="text-align:left;">
+                            <select id="ttype" name="ttype" class="inputForm" style=" margin-left:0; padding-left:0;" title="Leave or arrive options">
+                                <option value="dep">Leave</option>
+                                <option value="arr">Arrive</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input id="datepicker" class="inputForm" name="date" type="text" style="background:url('{!URLFOR($Resource.vta_Org_Website,'images/calendarIcon.png')}') no-repeat; background-position:95%; width:90%; background-color:white; margin-right:2.5%;" placeholder="mm/dd/yy" title="Trip Date - Enter the date that you plan to take your trip" />
+                        </td>
+                        <td style="white-space:nowrap;">
+                            <!--todo javascript to add time from selectlist to this input
+                            <input type="hidden" name="time"/>
+                            -->
+                            <select style="max-width:50px;" id="hour" name="hour" class="inputForm" title="hour options">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>:
+                            <select style="max-width:50px;" id="minute" name="minute" class="inputForm" title="minute options">
+                                <option value="00">00</option>
+                                <option value="05">05</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="25">25</option>
+                                <option value="30">30</option>
+                                <option value="35">35</option>
+                                <option value="40">40</option>
+                                <option value="45">45</option>
+                                <option value="50">50</option>
+                                <option value="55">55</option>
+                                <option value="60">60</option>
+                            </select>
+                            <select style="max-width:50px;" id="period" name="period" class="inputForm" title="Period: AM or PM Options">
+                                <option value="am">AM</option>
+                                <option value="pm">PM</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input id="timeField" type="hidden" name="time"/>
+                            <input id="plan_trip_id" class="inputForm" type="submit" value="GO" name="plan_trip"></input>
+                            <!--onMouseOut="this.className='trip_button'"> class="trip_button">-->
+                            <!--onMouseOver="this.className='trip_button_hover'"-->
+                        </td>
+                    </tr>
+                </form>
+            </table>
+        </div>
+    </div>
+        <!-- mobile -->
+    <div id="tripplannerwidgetmobile" >
+    <!-- margin-left:20px; -->
+        <table  height="179"  border="0" cellpadding="0" cellspacing="0" >
+            <form method="get" class="trip_planner_form" target="_blank" action="//www.google.com/maps" name="trip_planner_form" onSubmit="return storeMobileTrip();">
+                <tr>
+                    <td colspan="2">
+                        <h2>Trip Planner </h2>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="tpwfrom">From</label></td>
+                    <td>
+                        <INPUT name="saddr" type="text" id="tpwfrom"  placeholder="Enter address (use city or zip) or Stop ID"  title="Trip Starting Address - Enter the address of where you plan to start your trip"/><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="tpwto">To</label></td>
+                    <td>
+                        <INPUT name="daddr" type="text" id="tpwto" placeholder="Destination address or Stop ID" title="Trip Destination Address - Enter the address of where you would like to go"/><br/>
+                    </td>
+                    <input type="hidden" name="ie" value="UTF8" /><input type="hidden" name="f" value="d" /> <input type="hidden" name="dirflg" value="r" />
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input id="tpwleave" type="radio" name="ttype" value="dep" checked="true"/>
+                        <label for="tpwleave">Leave</label>
+                        <input id="tpwarrive" type="radio" name="ttype" value="arr"/>
+                        <label for="tpwarrive">Arrive</label>
+                    </td>
+                </tr>
+                <!--
+                <tr>
+                    <td colspan="2">
+                        <div style="display:inline-block;"><label for="tpwdatepicker">Date</label>
+                            <input id="tpwdatepicker" name="date" type="text" placeholder="mm/dd/yyyy" size="6" title="Trip Date - Enter the date that you plan to take your trip" />
+                        </div>
+                        <div style="display:inline-block;">
+                        <label for="tpwTime">Time</label>
+                            <input id="tpwTime" placeholder="hh:mm(am/pm)" name="time" size="6" type="text"/><INPUT id="tpwplan_trip_id" type="submit" value="Go" name="plan_trip"  class="trip_button"/>
+                        </div>
+                    </td>
+                </tr>
+                -->
+                <tr>
+                    <td><label for="tpwdatepicker">Date</label></td>
+                    <td>
+                        <input id="tpwdatepicker" name="date" type="text" placeholder="mm/dd/yyyy"  title="Trip Date - Enter the date that you plan to take your trip" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="tpwTime">Time</label>   </td>
+                    <td>
+                        <input id="tpwTime" placeholder="hh:mm(am/pm)" name="time" type="text"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <INPUT id="tpwplan_trip_id" type="submit" value="Go" name="plan_trip" class="trip_button"/>
+                    </td>
+                </tr>
+            </form>
+        </table>
+    </div>
+</div>
+</apex:component>
