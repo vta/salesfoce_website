@@ -1,0 +1,63 @@
+.SCVTATitle{
+			position:relative;
+			
+			//border:1px solid;
+			height:60px;	
+            background: rgb(216,230,239); /* Old browsers */
+			background: -moz-linear-gradient(top, rgba(216,230,239,1) 0%, rgba(250,251,253,1) 100%); /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(216,230,239,1)), color-stop(100%,rgba(250,251,253,1))); /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(top, rgba(216,230,239,1) 0%,rgba(250,251,253,1) 100%); /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(top, rgba(216,230,239,1) 0%,rgba(250,251,253,1) 100%); /* Opera 11.10+ */
+			background: -ms-linear-gradient(top, rgba(216,230,239,1) 0%,rgba(250,251,253,1) 100%); /* IE10+ */
+			background: linear-gradient(to bottom, rgba(216,230,239,1) 0%,rgba(250,251,253,1) 100%); /* W3C */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d8e6ef', endColorstr='#fafbfd',GradientType=0 ); /* IE6-9 */		
+		}
+		/* The ghost, nudged to maintain perfect centering */
+			.SCVTA .SCVTATitle span:before,SCVTA.SCVTAFooter span:before{
+			  content: '';
+			  display: inline-block;
+			  height: 100%;
+			  vertical-align: middle;
+			  //margin-right: -0.25em; /* Adjusts for spacing */
+			 
+		}
+		.SCVTATitle span{
+			vertical-align:middle;
+			 color:#026980;
+			 font-weight:bold;
+			 margin-left:10px;
+		}
+		.SCVTATitle .ytlogo{
+			display:inline-block;
+			float:right;
+			margin-right:10px;
+			height:100%;
+			
+		}
+		.SCVTA{
+			border:2px solid #d3d3d3;
+			float:left;
+			width:380px;
+			min-height:347px;
+			margin-right:30px;
+			margin-bottom:50px;
+		}
+		.SCVTA .ytplayer{
+		   width:100%;
+		   height:244px;
+		}
+		.SCVTA .SCVTAFooter{
+			height:40px;
+		}
+		.SCVTA .SCVTAFooter span{
+			color:red;
+			display:inline-block;
+			float:right;
+			margin-right:10px;
+		}
+		
+		.SCVTAFooter .subscribecontainer{
+			float:right;
+			margin-right:10px;
+			margin-top:10px;
+		}	

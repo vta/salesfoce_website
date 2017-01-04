@@ -1,0 +1,42 @@
+#instagramComponent{			
+border:2px solid #d3d3d3;
+margin-bottom:20px
+}
+#instagramComponent iframe{
+display:block;
+margin:0px auto;
+}
+.socialTitleContainer{
+position:relative;
+height:60px;	
+background: rgb(216,230,239); /* Old browsers */
+background: -moz-linear-gradient(top, rgba(216,230,239,1) 0%, rgba(250,251,253,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(216,230,239,1)), color-stop(100%,rgba(250,251,253,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, rgba(216,230,239,1) 0%,rgba(250,251,253,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, rgba(216,230,239,1) 0%,rgba(250,251,253,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, rgba(216,230,239,1) 0%,rgba(250,251,253,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom, rgba(216,230,239,1) 0%,rgba(250,251,253,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d8e6ef', endColorstr='#fafbfd',GradientType=0 ); /* IE6-9 */		
+}
+/* The ghost, nudged to maintain perfect centering */
+.socialTitleContainer span:before,#socialMedia .socialMediaFooter span:before, .socialMediaTitleContainer .logo:before{
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  //margin-right: -0.25em; /* Adjusts for spacing */
+}
+.socialTitleContainer span{
+vertical-align:middle;
+ color:#026980;
+ font-weight:bold;
+ margin-left:10px;
+}
+.socialTitleContainer .logo{
+display:inline-block;
+float:right;
+margin-right:10px;
+height:100%;
+
+}
+		

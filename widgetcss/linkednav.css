@@ -1,0 +1,15 @@
+.linkedNav{
+	display:block;
+}
+.linkedNav a:link{
+	color:black;
+	text-decoration:none;
+}
+.linkedNav a:hover{
+	color:black;
+	text-decoration:underline;
+}
+.linkedNav a:Visited{
+	color:black;
+	
+}

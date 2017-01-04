@@ -1,0 +1,33 @@
+#smallCalendar {	
+	width:100%;
+	//max-width: 200px;
+	margin: 0 auto;
+	font-size: 10px;
+	margin-bottom:15px;
+}
+#smallCalendar .fc-header-title h2 {
+	font-size: .9em;
+	white-space: normal !important;
+}
+#smallCalendar .fc-view-month .fc-event, .fc-view-agendaWeek .fc-event {
+	font-size: 0;
+	overflow: hidden;
+	height: 2px;
+}
+#smallCalendar .fc-view-agendaWeek .fc-event-vert {
+	font-size: 0;
+	overflow: hidden;
+	width: 2px !important;
+}
+#smallCalendar .fc-agenda-axis {
+	width: 20px !important;
+	font-size: .7em;
+}
+
+#smallCalendar .fc-button-content {
+	padding: 0;
+}	
+ #smallCalendar .fc-header{
+	font-size:1.0em;
+	
+}			

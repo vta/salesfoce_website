@@ -1,0 +1,118 @@
+/* webkit has a bug with its pseudo selectors, this works around it */
+body { -webkit-animation: bugfix infinite 1s; }
+@-webkit-keyframes bugfix { from { padding: 0; } to { padding: 0; } }
+
+.accordianGroup {
+    //font: 10pt arial, verdana;
+    width: 100%;
+            margin-bottom:15px;
+            
+}
+
+/* Configure the radio buttons to hide off screen */
+.accordianGroup > input[type="radio"] {
+    position: absolute;
+    left:-100px;
+    top:-100px;
+}
+
+/* Configure labels to cover their radio inputs */
+.accordianGroup > input[type="radio"] + label {
+    /* inline-block such that the label can be given dimensions */
+    display: inline-block;
+
+    /* label fills widget width */
+    width: 100%;
+     
+    /* A nice curved border around the toggle */
+    border-right:1px solid #939598 ;
+            border-left:1px solid #939598;
+            border-bottom:1px solid #939598;
+            
+            
+    
+     
+    /* Padding around toggle text */
+    padding-top: 10px ;
+            padding-bottom: 10px;
+            
+    /* Set the background color to default gray (non-selected toggle) */
+            background: rgb(189,190,193); /* Old browsers */
+            background: -moz-linear-gradient(-45deg,  rgba(189,190,193,1) 2%, rgba(219,220,221,1) 34%, rgba(255,255,255,1) 94%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, right bottom, color-stop(2%,rgba(189,190,193,1)), color-stop(34%,rgba(219,220,221,1)), color-stop(94%,rgba(255,255,255,1))); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(-45deg,  rgba(189,190,193,1) 2%,rgba(219,220,221,1) 34%,rgba(255,255,255,1) 94%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(-45deg,  rgba(189,190,193,1) 2%,rgba(219,220,221,1) 34%,rgba(255,255,255,1) 94%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(-45deg,  rgba(189,190,193,1) 2%,rgba(219,220,221,1) 34%,rgba(255,255,255,1) 94%); /* IE10+ */
+            background: linear-gradient(135deg,  rgba(189,190,193,1) 2%,rgba(219,220,221,1) 34%,rgba(255,255,255,1) 94%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bdbec1', endColorstr='#ffffff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+            cursor:pointer;
+}
+
+
+
+
+/* Focused toggle need to be highlighted as such */
+.accordianGroup > input[type="radio"]:focus + label {
+   // border:1px dashed black;
+}
+
+/* Checked toggle must be white with the bottom border removed */
+.accordianGroup > input[type="radio"]:checked + label {
+    background-color:white;
+    font-weight: bold;
+    border-bottom: 1px solid white;
+    margin-bottom: -1px;
+}
+
+/* The toggle content must fill the widgets size and have a nice border */
+.accordianGroup > div {
+    display: none;
+    border-top: 2px solid #939598;
+            border-bottom:1px solid #939598;
+    background-color: white;
+    padding-top:10px;
+    padding-bottom:10px;
+    width: 100%;
+    overflow: auto;
+}
+
+/* This matchs toggles displaying to thier associated radio inputs */
+.accordianGroup > input[type="radio"]:checked + label  + br + div {
+    display: block;
+
+}
+.accordianGroup > div ul{
+            list-style:none;
+            margin:0px;
+}
+.accordianGroup > div ul li a{
+            text-decoration:none;
+            color:#000;
+}
+.accordianGroup > div ul li a:hover{
+            color:#005883;
+            
+}
+.accordianGroup > input[type="radio"] + label  .listArrow{
+            float:right; 
+            display:inline-block;
+            //padding-right:10px;
+            background: URL('../images/listarrowclosed.png') no-repeat;
+            background-height:100%;
+            width:20px;
+            height:20px;
+}
+.accordianGroup > input[type="radio"]:checked + label  .listArrow{
+            background: URL('../images/listarrowopen.png') no-repeat;
+            background-height:100%;
+            width:20px;
+            height:20px;
+}
+.accordianGroup  span  {
+            //padding-left:10px; 
+}
+.accordianGroup >h2{
+            color:#005883;
+            margin:0;
+}
+

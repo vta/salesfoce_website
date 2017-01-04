@@ -1,0 +1,101 @@
+
+		.projectTitleContainer{
+			position:relative;
+			
+			//border:1px solid;
+			height:60px;	
+            background: rgb(216,230,239); /* Old browsers */
+			background: -moz-linear-gradient(top, rgba(216,230,239,1) 0%, rgba(250,251,253,1) 100%); /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(216,230,239,1)), color-stop(100%,rgba(250,251,253,1))); /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(top, rgba(216,230,239,1) 0%,rgba(250,251,253,1) 100%); /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(top, rgba(216,230,239,1) 0%,rgba(250,251,253,1) 100%); /* Opera 11.10+ */
+			background: -ms-linear-gradient(top, rgba(216,230,239,1) 0%,rgba(250,251,253,1) 100%); /* IE10+ */
+			background: linear-gradient(to bottom, rgba(216,230,239,1) 0%,rgba(250,251,253,1) 100%); /* W3C */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d8e6ef', endColorstr='#fafbfd',GradientType=0 ); /* IE6-9 */		
+		}
+		/* The ghost, nudged to maintain perfect centering */
+			.projectTitleContainer span:before,#projectMedia .projectMediaFooter span:before{
+			  content: '';
+			  display: inline-block;
+			  height: 100%;
+			  vertical-align: middle;
+			  //margin-right: -0.25em; /* Adjusts for spacing */
+			 
+		}
+		.projectTitleContainer span{
+			vertical-align:middle;
+			 color:#026980;
+			 font-weight:bold;
+			 margin-left:10px;
+		}
+		.projectTitleContainer .ytlogo{
+			display:inline-block;
+			float:right;
+			margin-right:10px;
+			height:100%;
+			
+		}
+		#projectMedia{
+			border:2px solid #d3d3d3;
+			float:left;
+			width:380px;
+			min-height:347px;
+			margin-right:30px;
+			margin-bottom:50px;
+		}
+		#projectMedia .ytplayer{
+		   width:100%;
+		   height:244px;
+		}
+		#projectMedia .projectMediaFooter{
+			height:40px;
+		}
+		#projectMedia .projectMediaFooter span{
+			color:red;
+			display:inline-block;
+			float:right;
+			margin-right:10px;
+		}
+		
+		
+		#projectOverview{
+			max-width: 520px;
+			height:347px;
+			margin-bottom:50px;
+			border:2px solid #d3d3d3;
+			float:left;
+			
+			
+			
+		}
+		#projectOverview .projectBody{
+		 margin:10px;
+		 margin-right:0px;
+		 overflow:auto;
+		  height:275px;
+		
+		}
+		
+		#projectSlider{
+			border:2px solid #d3d3d3;
+			width:100%;
+			//height:700px;
+			
+		}
+		
+		.projectMediaFooter .subscribecontainer{
+			float:right;
+			margin-right:10px;
+			margin-top:10px;
+		}
+		.projectMediaFooter .subscribecontainer .subscribe-label{
+		 content:' Subscribe';
+		 color:black;
+		}
+		#projectOverview .projectBody a:link{
+			text-decoration:none;
+			color:#026980;
+		}
+		#projectOverview .projectBody a:hover{
+		 text-decoration:underline;
+		}

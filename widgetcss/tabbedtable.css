@@ -1,0 +1,83 @@
+.force-repaint { -webkit-animation: bugfix infinite 1s; }
+@-webkit-keyframes bugfix {
+    from { fill: 0; }
+    to { fill: 0; }
+}
+/* Set the size and font of the tab widget */
+.tabGroup {
+    font: 10pt arial, verdana;
+    width: 350px;
+	margin-bottom:15px;
+}
+ 
+/* Configure the radio buttons to hide off screen */
+.tabGroup > input[type="radio"] {
+    position: absolute;
+	display:none;
+}
+ 
+/* Configure labels to look like tabs */
+.tabGroup > input[type="radio"] + label {
+    /* inline-block such that the label can be given dimensions */
+    display: inline-block;
+	border:0px;
+   
+     
+    /* the bottom border is handled by the tab content div */
+    border-bottom: 0px;
+ 
+    /* Padding around tab text */
+    padding: 5px 0px 5px 0px;
+	text-align:center;
+ 
+    /* Set the background color to default gray (non-selected tab) */
+    background-color:#CCDEEA;
+	width:32%;
+	
+
+}
+.tabGroup > input[type="radio"]:first-of-type + label {
+   
+}
+.tabGroup > input[type="radio"]:last-of-type + label {
+	
+
+}
+ 
+/* Focused tabs need to be highlighted as such */
+.tabGroup > input[type="radio"]:focus + label {
+    border:1px dashed black;
+	
+}
+ 
+/* Checked tabs must be white with the bottom border removed */
+.tabGroup > input[type="radio"]:checked + label {
+    background-color:white;
+	color:#005883;
+    font-weight: bold;
+	 border: 1px solid black;
+    border-bottom: 1px solid white;
+    margin-bottom: -1px;
+	
+}
+ 
+/* The tab content must fill the widgets size and have a nice border */
+.tabGroup > div {
+    display: none;
+    border: 1px solid black;
+    background-color: white;
+    padding: 10px 10px;
+	min-height:400px;
+    overflow: auto;
+   
+}
+ 
+/* This matchs tabs displaying to thier associated radio inputs */
+.tab1:checked ~ .tab1, .tab2:checked ~ .tab2, .tab3:checked ~ .tab3 {
+    display: block;
+}
+
+.tabGroup>div ul{
+	list-style:none;
+	line-height:2em;
+}

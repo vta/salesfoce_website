@@ -1,0 +1,70 @@
+#sidenavigation {  display:inline-block; min-width:180px; width:100%; margin-bottom:15px;}
+#sidenavigation ul { margin:0px; padding:0px; }
+#sidenavigation li { list-style: none; } 
+ 
+ul.top-level { 
+ 
+//border:1px solid #939598;
+//background: -moz-linear-gradient(top,  rgba(204,222,234,1) 0%, rgba(237,247,255,0.65) 100%); /* FF3.6+ */
+//background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(204,222,234,1)), color-stop(100%,rgba(237,247,255,0.65))); /* Chrome,Safari4+ */
+//background: -webkit-linear-gradient(top,  rgba(204,222,234,1) 0%,rgba(237,247,255,0.65) 100%); /* Chrome10+,Safari5.1+ */
+//background: -o-linear-gradient(top,  rgba(204,222,234,1) 0%,rgba(237,247,255,0.65) 100%); /* Opera 11.10+ */
+//background: -ms-linear-gradient(top,  rgba(204,222,234,1) 0%,rgba(237,247,255,0.65) 100%); /* IE10+ */
+//background: linear-gradient(to bottom,  rgba(204,222,234,1) 0%,rgba(237,247,255,0.65) 100%); /* W3C */
+//filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ccdeea', endColorstr='#a6edf7ff',GradientType=0 ); /* IE6-9 */
+
+
+}
+ul.top-level li {
+border-bottom: #939598 solid;
+//border-top: #000 solid;
+border-width: 1px;
+// background:#4C4E56;
+}
+
+#sidenavigation a {
+color: #000000;
+cursor: pointer;
+display:block;
+height:25px;
+line-height: 25px;
+text-indent: 10px;
+text-decoration:none;
+width:100%;
+}
+
+#sidenavigation a:hover{
+text-decoration:none;
+}
+
+#sidenavigation li:hover {
+background: #4CB4E7;
+position: relative;
+}
+#sidenavigation  li:hover a{
+            color:white;
+}
+
+#sidenavigation  .sideNavTitle a{
+            
+            color:#005883;
+            font-weight:bold;
+}
+#sidenavigation  .sideNavTitle:hover{
+            background:#CCDEEA;
+}
+#sidenavigation  .sideNavTitle:hover a{
+            color:#005883;
+}
+#sidenavigation  li:hover a{
+            color:white;
+}
+#sidenavigation .selectedSideNav{
+background:white;
+color:#005883;
+font-weight:bold;
+}
+#sidenavigation .selectedSideNav a{
+  color:#005883;
+}
+

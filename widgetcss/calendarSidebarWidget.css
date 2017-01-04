@@ -1,0 +1,52 @@
+body  #middlecontent  #calendarPanel2{	
+	position:relative;	
+        border-radius: 5px 20px 5px 5px;
+        background:#dad9d6;
+	//height:250px;
+}
+body  #middlecontent  #calendarPanel2 a:link{
+	color:#026980;
+	text-decoration:none;
+}
+body  #middlecontent  #calendarPanel2 a:visited{
+	color:#000000;
+}
+body  #middlecontent  #calendarPanel2 a:hover{
+	text-decoration:underline;
+}
+body #middlecontent   #calendarPanel2 .titleText{
+  //display:inline-block;
+  padding:5px 20px 5px 20px;
+  border-bottom:2px solid #ffffff;
+}
+body #middlecontent   #calendarPanel2 .titleText span{
+	margin-right:5px;
+}
+body #middlecontent   #calendarPanel2 .titleText select{
+	vertical-align:middle;
+}
+body #middlecontent  #calendarPanel2 .rightcontent{
+  padding-left:20px;
+  height:250px;
+  overflow-y:auto;
+}
+body  #middlecontent  #calendarPanel2 .rightcontent table{
+	//table-layout:fixed;
+}
+body #middlecontent  #calendarPanel2 .rightcontent p{
+  margin-top:0.5em;
+  margin-bottom:0.5em;
+}
+body #middlecontent  #calendarPanel2 .nobreak{
+ //width:45%;
+ vertical-align:top;
+ white-space:nowrap;
+ padding-right:5px;
+}
+body #middlecontent  #calendarPanel2 tr td{
+	padding-top:10px;
+}
+body #middlecontent  #calendarPanel2 .meetingName{
+// width:70%;
+ vertical-align:top;
+}

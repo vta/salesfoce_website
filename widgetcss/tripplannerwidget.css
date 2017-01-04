@@ -1,0 +1,47 @@
+#tripplannerwidget{
+	//border-radius:10px;
+	border:2px solid #D3D3D3;
+	display:inline-block;
+	width:100%;
+	margin-bottom:15px;
+	//padding-top:10px;
+	//padding-bottom:10px;
+	overflow:hidden;
+}
+#tripplannerwidget h2{
+	margin:0px;
+}
+#tripplannerwidget table{
+	margin:0px auto;
+
+}
+#tripplannerwidget table td{
+	padding-top:5px;
+	padding-bottom:5px;
+}
+#tripplannerwidget #tpwfrom,#tripplannerwidget #tpwto{
+	width:86%;
+	margin-left:1%;
+
+}
+#tripplannerwidget #tpwleave{
+	margin-left:15%;
+}
+#tripplannerwidget #tpwarrive{
+	margin-left:25px;
+
+}
+#tripplannerwidget table label{
+	font-weight:bold;
+}
+#tripplannerwidget table h2{
+	//margin:5px;
+}
+#tripplannerwidget #tpwplan_trip_id{
+	color:white;
+	background:#9D2A39;
+	font-weight:bold;
+	border-radius:5px;
+}
+
+
