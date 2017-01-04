@@ -626,26 +626,17 @@ a.desktopMode{
 
 
 /******Trip Planner styling*******/
-
-
-
 #tp_section{
-	display:inline-block;				
-
+    background: #DAD9D6;
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    border-radius: 5px;
+    width: 50%;
     position: relative;
-    
-	margin:0px;
-	margin-top:5px;
-
-
-	
-	//border:1px solid red;
-
-	padding:0px;
-	width:50%;
-	
-	
+    display: inline-block;
 }
+
 #tp_section table{
  width:100%;
 
