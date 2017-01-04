@@ -29,7 +29,7 @@ body #nav #navbar>li{
 	width:16.66%;
 	height:25px;
 
-	background:#4CB4E7;
+	background:#4C4E56;
 	-webkit-box-shadow:inset -2px 0px 0px rgba(255,255,255,1);
 	-moz-box-shadow:    inset -2px 0px 0px rgba(255,255,255,1);
 	box-shadow:         inset -2px 0px 0px rgba(255,255,255,1);
@@ -79,8 +79,7 @@ body #nav #navbar> li:hover{
 }
 body #nav #navbar .topMainCategory{
     background:#29588C;
-        border-radius: 5px;
-	
+        border-radius: 5px;	
 }
 body #nav #navbar .topMainCategory a:link{
     color:#ffffff;
@@ -98,7 +97,7 @@ body #nav #navbar>li>ul{
 	min-width:500px;
 	height:145px;
 	left:-9999px;
-	background:#29588C;
+	background:#4CB4E7;
     opacity:0.9;
 	z-index:8;
 	
