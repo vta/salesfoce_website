@@ -98,7 +98,7 @@ body #LargeBanner{
 	background-position:50% 50%;
 	
 	height:250px;
-	margin:0px auto;
+	margin:0px auto 5px auto;
 	max-width:1920px;
 	min-Width:1036px;
 border-radius: 5px 5px 5px 5px	
@@ -117,7 +117,6 @@ border-radius: 5px 5px 5px 5px
 	 top:10px;	
   }
 #topNavPosition{	
-	position:absolute; 
 	width:100%;  
 	bottom:-28px;
   } 
