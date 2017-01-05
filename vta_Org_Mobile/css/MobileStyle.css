@@ -38,6 +38,7 @@
 		-moz-transition: -moz-transform 0.3s, width 0.3s;
 		transition: transform 0.3s, width 0.3s;
 		max-width:inherit;
+		background:white;
 	}
 	#quick-links ul li{
 		max-width:inherit;
@@ -109,13 +110,15 @@
 		text-align:right;
 		height:auto;
 		max-width:inherit;
+		width:100%;
 		
 	}
 	#quick-links #tp_section{
-	display:none;
+		display:none;
 	}
 	 #tripplannerwidgetmobile{
-	display:inherit;
+		display:inherit;
+		background:white;
 	}
 	#tripplannerwidgetmobile input[type="text"], #tripplannerwidgetmobile input[type="submit"]{
 		width:100%;
@@ -196,6 +199,7 @@
 		min-width:inherit;
 		padding-bottom:10px;
 		overflow:hidden;
+		height:38px;
 		
 		
 	}
