@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="tripplanner.js" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="tripplanner.css">
+</head>
+<body>
+  <div class="widget-tripplanner">
+    <div class="switcher">
+      <div id="tab_vta" class="tabs">
+        <h2>VTA Tripplanner</h2>
+      </div>
+      <div id="tab_google" class="tabs active">
+        <h2>Google Maps</h2>
+      </div>
+    </div>
+    <div class="forms">
+      <div id="form_vta" class="hidden">
+        <form method="get" id="topTripplannerForm" class="trip_planner_form" target="_blank" action="https://tripplanner.vta.org/planner?" name="trip_planner_form">
+          <div class="input-wrapper">
+            <div class="input-group">
+              <div class="address">
+                <input class="inputForm" id="desktopFrom" name="from" type="text" required="true" placeholder="Starting address" title="Trip Starting Address - Enter the address (use city or zip) of where you plan to start your trip">
+              </div>
+              <div class="address">
+                <input class="inputForm" id="desktopTo" name="to" type="text" required="true" placeholder="Destination address" title="Trip Destination Address - Enter the address (use city or zip) of where you would like to go">
+              </div>
+
+            </div>
+            <div class="input-group">
+              <select name="arriveBy" class="inputForm" style=" margin-left:0; padding-left:0;" title="Leave or arrive options">
+                <option value="false">Leave</option>
+                <option value="true">Arrive</option>
+              </select>
+              <input id="datepicker" class="inputForm calendar datepickercalendar" type="text" style="background:url('{!URLFOR($Resource.vta_Org_Website,'images/calendarIcon.png')}') no-repeat; background-position:95%; width:8rem; background-color:white; margin-right:2.5%;"
+              placeholder="mm/dd/yy" title="Trip Date - Enter the date that you plan to take your trip" />
+
+              <select id="hourPicker" class="inputForm time" title="hour options">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+              <select name="minute" class="inputForm time" title="minute options">
+                <option value="00">00</option>
+                <option value="05">05</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="25">25</option>
+                <option value="30">30</option>
+                <option value="35">35</option>
+                <option value="40">40</option>
+                <option value="45">45</option>
+                <option value="50">50</option>
+                <option value="55">55</option>
+              </select>
+              <select id='period' class="inputForm time" title="Period: AM or PM Options">
+                <option value="am">AM</option>
+                <option value="pm">PM</option>
+              </select>
+              <input id="altDate" type="hidden" name="date" value="" />
+              <input id="hourField" type="hidden" name="hour" />
+              <input id="plan_trip_id" class="inputForm" type="submit" value="go!">
+            </div>
+          </div>
+        </div>
+      </form>
+      <div id="form_google">
+        <form method="get" id="g_topTripplannerForm" class="trip_planner_form" target="_blank" action="//www.google.com/maps" name="g_trip_planner_form" onSubmit="return storeWebTrip();">
+          <div class="input-wrapper">
+            <div class="input-group">
+              <div class="address">
+                <input class="g_inputForm" id="g_desktopFrom" name="from" type="text" required="true" placeholder="Starting address" title="Trip Starting Address - Enter the address (use city or zip) of where you plan to start your trip">
+              </div>
+              <div class="address">
+                <input class="g_inputForm" id="g_desktopTo" name="to" type="text" required="true" placeholder="Destination address" title="Trip Destination Address - Enter the address (use city or zip) of where you would like to go">
+                <input type="hidden" name="ie" value="UTF8" />
+                <input type="hidden" name="f" value="d" />
+                <input type="hidden" name="dirflg" value="r" />
+                <input type="hidden" name="output" value="classic" />
+              </div>
+            </div>
+            <div class="input-group">
+              <select name="arriveBy" class="g_inputForm" style=" margin-left:0; padding-left:0;" title="Leave or arrive options">
+                <option value="false">Leave</option>
+                <option value="true">Arrive</option>
+              </select>
+              <input id="g_datepicker" class="g_inputForm calendar datepickercalendar" type="text" style="background:url('{!URLFOR($Resource.vta_Org_Website,'images/calendarIcon.png')}') no-repeat; background-position:95%; width:8rem; background-color:white; margin-right:2.5%;"
+              placeholder="mm/dd/yy" title="Trip Date - Enter the date that you plan to take your trip" />
+              <select id="g_hourPicker" class="g_inputForm time" title="hour options">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+              <select id="g_minutePicker" name="minute" class="g_inputForm time" title="minute options">
+                <option value="00">00</option>
+                <option value="05">05</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="25">25</option>
+                <option value="30">30</option>
+                <option value="35">35</option>
+                <option value="40">40</option>
+                <option value="45">45</option>
+                <option value="50">50</option>
+                <option value="55">55</option>
+              </select>
+              <select id='g_period' class="g_inputForm time" title="Period: AM or PM Options">
+                <option value="am">AM</option>
+                <option value="pm">PM</option>
+              </select>
+              <input id="timeField" type="hidden" name="time" />
+              <input id="g_plan_trip_id" class="g_inputForm" type="submit" value="go!">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+<!-- ============================== 
+  MOBILE Trip Planner Widget 
+============================== 
+-->
+<div id="tripplannerwidgetmobile" class="widget-tripplanner">
+  <div class="switcher">
+    <div id="tab_vta" class="tabs mobileTabs">
+      <h2>VTA Tripplanner</h2>
+    </div>
+    <div id="tab_google" class="tabs active mobileTabs">
+      <h2>Google Maps</h2>
+    </div>
+  </div>
+  <div class="forms">
+    <div id="form_vta_mobile" class="hidden">
+      <form method="get" id="mobileTripPlannerForm" class="trip_planner_form" target="_blank" action="https://tripplanner.vta.org/planner?" name="trip_planner_form">
+
+
+        <div class="input-group address">
+          <label for="tpwfrom">From</label>
+          <input name="from" type="text" id="mobileFrom" required="true" placeholder="Starting address" title="Trip Starting Address - Enter the address of where you plan to start your trip" />
+        </div>
+
+        <div class="input-group address">
+          <label for="tpwto">To</label>
+          <input name="to" type="text" id="mobileTo" required="true" placeholder="Destination address" title="Trip Destination Address - Enter the address of where you would like to go" />
+        </div>
+
+        <div class="input-group arrive-leave-by">
+          <input id="tpwleave" type="radio" name="arriveBy" value="false" checked="true" />
+          <label for="tpwleave">Leave</label>
+          <input id="tpwarrive" type="radio" name="arriveBy" value="true" />
+          <label for="tpwarrive">Arrive</label>
+        </div>
+
+        <div class="input-group date">
+          <input id="datepickermobile" class="inputForm calendar" type="date" style="background:url('{!URLFOR($Resource.vta_Org_Website,'images/calendarIcon.png')}') no-repeat; background-position:95%; " placeholder="mm/dd/yy" title="Trip Date - Enter the date that you plan to take your trip"
+          />
+        </div>
+        <div class="input-group time">
+          <input id="mobileDate" type="hidden" name="date" />
+          <select id="hourPickerMobile" class="inputForm" title="hour options">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+          </select>
+          <select name="minute" class="inputForm" title="minute options">
+            <option value="00">00</option>
+            <option value="05">05</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="25">25</option>
+            <option value="30">30</option>
+            <option value="35">35</option>
+            <option value="40">40</option>
+            <option value="45">45</option>
+            <option value="50">50</option>
+            <option value="55">55</option>
+          </select>
+          <select class="inputForm period" title="Period: AM or PM Options" id="periodMobile">
+            <option value="am">AM</option>
+            <option value="pm">PM</option>
+          </select>
+        </div>
+        <input id="hourFieldMobile" type="hidden" name="hour" />
+        <input id="tpwplan_trip_id" type="submit" value="go!" class="trip_button" />
+      </form>
+    </div>
+    <div id="form_google_mobile">
+      <!-- <form method="get" class="trip_planner_form" target="_blank" action="https://www.google.com/maps" name="trip_planner_form" onSubmit="return storeMobileTrip();"> -->
+      <form method="get" class="trip_planner_form" target="_blank" action="https://www.google.com/maps" name="trip_planner_form">
+        <div class="input-group address">
+          <label for="tpwfrom">From</label>
+          <input name="saddr" type="text" id="g_mobileFrom" required="true" placeholder="Starting address" title="Trip Starting Address - Enter the address of where you plan to start your trip" />
+        </div>
+        <div class="input-group address">
+          <label for="tpwto">To</label>
+          <input name="daddr" type="text" id="g_mobileTo" required="true" placeholder="Destination address" title="Trip Destination Address - Enter the address of where you would like to go" />
+        </div>
+
+        <div class="input-group arrive-leave-by">
+          <input id="tpwleave" type="radio" name="arriveBy" value="false" checked="true" />
+          <label for="tpwleave">Leave</label>
+          <input id="tpwarrive" type="radio" name="arriveBy" value="true" />
+          <label for="tpwarrive">Arrive</label>
+        </div>
+
+        <div class="input-group date">
+          <input id="datepickermobile" class="inputForm calendar" type="date" style="background:url('{!URLFOR($Resource.vta_Org_Website,'images/calendarIcon.png')}') no-repeat; background-position:95%; " placeholder="mm/dd/yy" title="Trip Date - Enter the date that you plan to take your trip"
+          />
+        </div>
+        <div class="input-group time">
+          <input id="mobileDate" type="hidden" name="date" />
+          <select id="g_hourPickerMobile" class="inputForm" title="hour options">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+          </select>
+          <select name="minute" class="inputForm" title="minute options">
+            <option value="00">00</option>
+            <option value="05">05</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="25">25</option>
+            <option value="30">30</option>
+            <option value="35">35</option>
+            <option value="40">40</option>
+            <option value="45">45</option>
+            <option value="50">50</option>
+            <option value="55">55</option>
+          </select>
+          <select class="inputForm period" title="Period: AM or PM Options" id="periodMobile">
+            <option value="am">AM</option>
+            <option value="pm">PM</option>
+          </select>
+        </div>
+        <input id="hourFieldMobile" type="hidden" name="hour" />
+        <input id="tpwplan_trip_id" type="submit" value="go!" class="trip_button" name="plan_trip"/>
+        <input type="hidden" name="ie" value="UTF8" />
+        <input type="hidden" name="f" value="d" /> 
+        <input type="hidden" name="dirflg" value="r" />        
+      </form>
+    </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
