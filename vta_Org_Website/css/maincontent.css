@@ -372,9 +372,6 @@ body #middlecontent #rightBar.three-col{
 width:21%;
 }
 
-
-  
-
   #leftPanel .navToggle{
   	display:none;
   }
@@ -389,8 +386,6 @@ width:21%;
 #twitter-widget-0{
 	width:100%;							
 }	
-
-
 
 body  #clipper{
     margin-top:2px;
@@ -628,13 +623,16 @@ a.desktopMode{
 /******Trip Planner styling*******/
 #tp_section{
     background: #DAD9D6;
-    margin: 0px;
+    margin: 0px 0px auto 1%;
     padding: 0px;
     height: 100%;
     border-radius: 5px;
-    width: 50%;
+    width: 49%;
     position: relative;
     display: inline-block;
+}
+#tp_section>div{ 
+    padding:5px;
 }
 
 #tp_section table{
@@ -713,12 +711,6 @@ a.desktopMode{
 	
   }
 
-/* .mobile-toggle{
-display:none;
-}
-#tripplannerwidgetmobile{
-display:none
-}*/
  #feedbackContiner{
 	display:none;
   }
