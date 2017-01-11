@@ -10,15 +10,15 @@
 <body>
   <div class="widget-tripplanner">
     <div class="switcher">
-      <div id="tab_vta" class="tabs">
+      <div id="tab_vta" class="tabs active">
         <h2>VTA Tripplanner</h2>
       </div>
-      <div id="tab_google" class="tabs active">
+      <div id="tab_google" class="tabs">
         <h2>Google Maps</h2>
       </div>
     </div>
     <div class="forms">
-      <div id="form_vta" class="hidden">
+      <div id="form_vta">
         <form method="get" id="topTripplannerForm" class="trip_planner_form" target="_blank" action="https://tripplanner.vta.org/planner?" name="trip_planner_form">
           <div class="input-wrapper">
             <div class="input-group">
@@ -77,15 +77,15 @@
           </div>
         </div>
       </form>
-      <div id="form_google">
-        <form method="get" id="g_topTripplannerForm" class="trip_planner_form" target="_blank" action="//www.google.com/maps" name="g_trip_planner_form" onSubmit="return storeWebTrip();">
+      <div id="form_google" class="hidden">
+        <form method="get" id="g_topTripplannerForm" class="trip_planner_form" target="_blank" action="http://www.google.com/maps" name="g_trip_planner_form">
           <div class="input-wrapper">
             <div class="input-group">
               <div class="address">
-                <input class="g_inputForm" id="g_desktopFrom" name="from" type="text" required="true" placeholder="Starting address" title="Trip Starting Address - Enter the address (use city or zip) of where you plan to start your trip">
+                <input class="g_inputForm" id="g_desktopFrom" name="saddr" type="text" required="true" placeholder="Starting address" title="Trip Starting Address - Enter the address (use city or zip) of where you plan to start your trip">
               </div>
               <div class="address">
-                <input class="g_inputForm" id="g_desktopTo" name="to" type="text" required="true" placeholder="Destination address" title="Trip Destination Address - Enter the address (use city or zip) of where you would like to go">
+                <input class="g_inputForm" id="g_desktopTo" name="daddr" type="text" required="true" placeholder="Destination address" title="Trip Destination Address - Enter the address (use city or zip) of where you would like to go">
                 <input type="hidden" name="ie" value="UTF8" />
                 <input type="hidden" name="f" value="d" />
                 <input type="hidden" name="dirflg" value="r" />

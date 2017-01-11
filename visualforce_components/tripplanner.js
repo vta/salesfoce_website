@@ -17,11 +17,11 @@ function initializeField() {
   }
 }
 
-
-
-
-
 $(document).ready(function() {
+
+  var currentTime = new Date();
+  var hours = currentTime.getHours();
+  var minutes = currentTime.getMinutes();
 
   $(".switcher >*").click(function(e) {
     $(".switcher >*").removeClass("active");
@@ -31,12 +31,7 @@ $(document).ready(function() {
     var formSelected = 'form_' + this.id.split('_')[1]
     $("#" + formSelected).removeClass("hidden")
     $("#" + formSelected + '_mobile').removeClass("hidden")
-
   });
-
-  var currentTime = new Date();
-  var hours = currentTime.getHours();
-  var minutes = currentTime.getMinutes();
 
   function setCurrentTime(date) {
     var hours = date.getHours();
@@ -61,12 +56,11 @@ $(document).ready(function() {
   setCurrentTime(new Date());
   console.log('ready_functions')
   $('#g_topTripplannerForm').submit(function() {
-    console.log('g_toptripplanner?')
     hour = $('#g_hourPicker option:selected').text();
     minute = $('#g_minutePicker option:selected').text();
     period = $('#g_period option:selected').text();
     timeString = hour + ':' + minute + period;
-    ('#timeField').attr('value', timeString);
+    $('#timeField').attr('value', timeString);
   })
 
   $('#topTripplannerForm').submit(function() {
