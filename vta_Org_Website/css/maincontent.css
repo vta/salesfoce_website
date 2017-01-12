@@ -631,9 +631,6 @@ a.desktopMode{
     position: relative;
     display: inline-block;
 }
-#tp_section>div{ 
-    padding:5px;
-}
 
 #tp_section table{
  width:100%;
@@ -709,7 +706,6 @@ a.desktopMode{
 }
 
 .tabs {
-  border: 1px solid #ccc;
   border-radius: 5px;
 }
 
@@ -763,7 +759,12 @@ a.desktopMode{
   text-align: center;
 }
 
-
+.tabs h3{
+	element.style {
+    -webkit-margin-before: initial;
+    -webkit-margin-after: initial;
+}
+}
 
 
 /******End Trip Planner styling*******/

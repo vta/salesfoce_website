@@ -154,20 +154,7 @@
     color:transparent;
 }
 
-#tp_section{
-    background: #DAD9D6;
-    margin: 0px 0px auto 1%;
-    padding: 0px;
-    height: 100%;
-    border-radius: 5px;
-    width: 49%;
-    position: relative;
-    display: inline-block;
-}
 
-#tp_section>div{ 
-    padding:5px;
-}
 .Routes{
 	overflow:hidden;
 }
