@@ -632,6 +632,101 @@ a.desktopMode{
     display: inline-block;
 }
 
+
+#tp_section.widget-tripplanner {
+  height: 5rem;
+}
+
+.widget-tripplanner {
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  height: 70px;
+}
+
+.widget-tripplanner,
+.widget-tripplanner * {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+.widget-tripplanner form {
+  display: block;
+}
+
+.switcher {
+  flex-direction: row;
+  padding-top:1%;
+  padding-bottom:1%;
+}
+
+.tabs {
+  border-radius: 5px;
+}
+
+.widget-tripplanner h3 {
+  float: left;
+  padding: 0.3rem;
+  margin: 0;
+  font-size: 1em;
+  line-height: 1.5em;
+  width:6.5rem;
+  text-align: left;
+  font-weight:bold;
+}
+
+
+.form {
+  flex-direction: row;
+}
+
+.active {
+  color: #4CB4E7;
+}
+
+.hidden {
+  display: none;
+}
+
+.input-group.date input {
+  width: 10rem;
+}
+
+.widget-tripplanner .input-group {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.widget-tripplanner .address {
+  width: auto;
+  padding-left: .5rem;
+  padding-right: .5rem;
+}
+
+.widget-tripplanner .address input {
+  width: 100%;
+}
+
+.widget-tripplanner input {
+  margin: 0.5rem;
+}
+
+.widget-tripplanner input[type=submit] {
+  display: inline-block;
+  background-color: #4CB4E7;
+  width: 3rem;
+  height: 1.5rem;
+  color: #ffffff;
+  font-weight: bold;
+  border-radius: 0.2rem;
+  font-style: italic;
+  text-align: center;
+}
+
 #tp_section table{
  width:100%;
 
@@ -693,77 +788,6 @@ a.desktopMode{
 	border-radius:5px;
 	text-align:center;
 	
-}
-.widget-tripplanner {
-  display: flex;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
-  border-radius: 5px;
-}
-
-.switcher {
-  flex-direction: row;
-}
-
-.tabs {
-  border-radius: 5px;
-}
-
-.form {
-  flex-direction: row;
-}
-
-.active {
-  background-color: red;
-}
-
-.hidden {
-  display: none;
-}
-
-.input-group.date input {
-  width: 10rem;
-}
-
-.widget-tripplanner .input-group {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.widget-tripplanner .address {
-  width: auto;
-  padding-left: .5rem;
-  padding-right: .5rem;
-}
-
-.widget-tripplanner .address input {
-  width: 100%;
-}
-
-.widget-tripplanner input {
-  margin: 0.5rem;
-}
-
-.widget-tripplanner input[type=submit] {
-  display: inline-block;
-  background-color: #4CB4E7;
-  width: 3rem;
-  height: 1.5rem;
-  color: #ffffff;
-  font-weight: bold;
-  border-radius: 0.2rem;
-  font-style: italic;
-  text-align: center;
-}
-
-.tabs h3{
-	element.style {
-    -webkit-margin-before: initial;
-    -webkit-margin-after: initial;
-}
 }
 
 
