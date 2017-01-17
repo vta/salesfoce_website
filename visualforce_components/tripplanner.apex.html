@@ -232,9 +232,9 @@ $j(".datepickercalendar").datepicker('setDate',new Date());
                 </div>
               </div>
               <div class="input-group">
-                <select name="arriveBy" class="g_inputForm" style=" margin-left:0; padding-left:0;" title="Leave or arrive options">
-                  <option value="false">Leave</option>
-                  <option value="true">Arrive</option>
+                <select name="ttype" class="g_inputForm" style=" margin-left:0; padding-left:0;" title="Leave or arrive options">
+                  <option value="dep">Leave</option>
+                  <option value="arr">Arrive</option>
                 </select>
                 <input id="g_datepicker" name="date" class="g_inputForm calendar datepickercalendar" type="text" style="background:url('{!URLFOR($Resource.vta_Org_Website,'images/calendarIcon.png')}') no-repeat; background-position:95%; width:8rem; background-color:white; margin-right:2.5%;"
                 placeholder="mm/dd/yy" title="Trip Date - Enter the date that you plan to take your trip" />
@@ -271,7 +271,7 @@ $j(".datepickercalendar").datepicker('setDate',new Date());
                   <option value="pm">PM</option>
                 </select>
                 <input id="timeField" type="hidden" name="time" />
-                <input id="g_plan_trip_id" class="g_inputForm" type="submit" value="go!"></input>
+                <input id="g_plan_trip_id" class="g_inputForm" type="submit" value="go!" name="plan_trip"></input>
               </div>
             </div>
           </form>
@@ -369,9 +369,9 @@ $j(".datepickercalendar").datepicker('setDate',new Date());
           </div>
 
           <div class="input-group arrive-leave-by">
-            <input id="tpwleave" type="radio" name="arriveBy" value="false" checked="true" />
+            <input id="tpwleave" type="radio" name="ttype" value="dep" checked="true" />
             <label for="tpwleave">Leave</label>
-            <input id="tpwarrive" type="radio" name="arriveBy" value="true" />
+            <input id="tpwarrive" type="radio" name="ttype" value="arr" />
             <label for="tpwarrive">Arrive</label>
           </div>
 
