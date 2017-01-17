@@ -274,18 +274,17 @@ $j(".datepickercalendar").datepicker('setDate',new Date());
                 <input id="g_plan_trip_id" class="g_inputForm" type="submit" value="go!"></input>
               </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
   <!-- ============================== 
   MOBILE Trip Planner Widget 
   ============================== -->
   <div id="tripplannerwidgetmobile" class="widget-tripplanner">
     <div class="switcher">
-      <div id="tab_vta" class="tabs active mobileTabs">
+      <div id="tab_vta" class="tabs mobileTabs active">
         <h2>VTA Tripplanner</h2>
       </div>
       <div id="tab_google" class="tabs mobileTabs">
@@ -357,7 +356,7 @@ $j(".datepickercalendar").datepicker('setDate',new Date());
           <input id="tpwplan_trip_id" type="submit" value="go!" class="trip_button" />
         </form>
       </div>
-      <div id="form_google_mobile">
+      <div id="form_google_mobile" class="hidden">
         <!-- <form method="get" class="trip_planner_form" target="_blank" action="https://www.google.com/maps" name="trip_planner_form" onSubmit="return storeMobileTrip();"> -->
         <form method="get" class="trip_planner_form" target="_blank" action="https://www.google.com/maps" name="trip_planner_form">
           <div class="input-group address">
