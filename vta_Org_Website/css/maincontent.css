@@ -125,8 +125,6 @@ body #middlecontent #newsleft{
 }
 body #middlecontent #newsright{
 	float:left;
-	//border:1px solid red;
-	//padding: 0px;
 }
 
 body #middlecontent .newssection .newsarticle{
@@ -142,16 +140,13 @@ body #middlecontent .newssection .articletitle{
 
 body #middlecontent .newssection a:link{
 	text-decoration:none;
-	//color:#29588C;
 	color:#0000ee;
 }
 body #middlecontent .newssection a:visited{
-	//color:#000000;
 	color:#3232f1;
 }
 body #middlecontent .newssection a:hover{
 	text-decoration:underline;
-	//color:#2B6071;
 	color:#0000ee;
 }
 body #middlecontent .newssection .newsimageSmall{
@@ -189,7 +184,7 @@ body #middlecontent .newssection .iconlink{
 	
 }
 body #middlecontent .newssection .iconlink:hover{	
-	//border:1px solid black;
+/*	border:1px solid black;*/
 }
 
 body #middlecontent #rightBar{
@@ -672,7 +667,8 @@ a.desktopMode{
 
 .tabs {
   border-radius: 5px;
-  height: 50%;
+  /*height: 50%; Doesn't work in Safari*/
+  height: 35px;
   padding: 2px 0;
   background: #fff;
   border-radius: 0;

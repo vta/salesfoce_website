@@ -757,6 +757,7 @@
     }
     .tabs{
     	width:50%;
+    	height:50%;
     }
     .active{
     	border-top-right-radius: 5px;
