@@ -629,6 +629,7 @@ a.desktopMode{
     width: 49%;
     position: relative;
     display: inline-block;
+    float:right;
 }
 
 
@@ -666,6 +667,7 @@ a.desktopMode{
 	padding: 0px 6px;
 	border: 1px solid #eee;
 	border-left: 0px;
+	width:100%;
 }
 
 .tabs {
@@ -676,7 +678,8 @@ a.desktopMode{
   border-radius: 0;
   /* border: 0; */
   border-bottom-left-radius: 5px;
-  color: #4CB4E7;
+  /*color: #4CB4E7;*/
+  color: black;  
 }
 
 .widget-tripplanner h3 {
@@ -718,7 +721,7 @@ a.desktopMode{
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .widget-tripplanner .address {
