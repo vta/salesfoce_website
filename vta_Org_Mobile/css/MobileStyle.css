@@ -8,6 +8,7 @@
 		#feedbackContiner{
 		display:inherit;
 	}
+
 	
   	.transparentBG{
 	background: rgba(227, 237, 241, 0.7);
@@ -664,6 +665,7 @@
 		-moz-transition: -moz-transform 0.3s, width 0.3s;
 		transition: transform 0.3s, width 0.3s;
 		max-width:inherit;
+		font-size: 8pt;
 	}
 	#quick-links ul{
 		width:100%;
@@ -729,9 +731,9 @@
   		
 		width: 70%;
 		overflow:scroll;
-		//border: 1px solid lightgrey;
 		z-index:100;
 		border:4px solid rgba(0, 89, 123,1);
+		background-color:white;
   	}
 	#quick-links ul{
 		display:inline-block;
@@ -748,6 +750,17 @@
 	TRIPPLANNER!!!!
 	============================
 	*/
+	.switcher{
+	    width: 100%;
+    	flex-wrap: nowrap;
+    	display: flex;
+    }
+    .tabs{
+    	width:50%;
+    }
+    .active{
+    	border-top-right-radius: 5px;
+    }	
 	 #tripplannerwidgetmobile{
 	display:inherit;
 	height:initial;
