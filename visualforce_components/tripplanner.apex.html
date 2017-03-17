@@ -60,7 +60,6 @@ $j('.period').val(ampm);
 setCurrentTime(new Date());
 
 $j('#g_topTripplannerForm').submit(function() {
-  console.log('g_toptripplanner?')
   hour = $j('#g_hourPicker option:selected').text();
   minute = $j('#g_minutePicker option:selected').text();
   period = $j('#g_period option:selected').text();
@@ -109,7 +108,69 @@ $j(".datepickercalendar").datepicker({
   dateFormat: "mm/dd/yy"
 })
 $j(".datepickercalendar").datepicker('setDate',new Date());
+
+  $j('.form_wt').submit(function(){
+    console.log('form submit')
+    console.log($j(this))
+    console.log($j(this).find('.wt_addr_from').val())
+    console.log($j(this).find('.wt_addr_to').val())
+    console.log($j(this).find('.wt_type option:selected').text())
+    console.log($j(this).find('.wt_date').val())
+    console.log($j(this).find('.wt_hour').val())
+    console.log($j(this).find('.wt_minute').val())
+    console.log($j(this).find('.wt_period').val())
+    var pageView = {};
+    pageView.origin = $j(this).find('.wt_addr_from').val()
+    pageView.destination = $j(this).find('.wt_addr_to').val()
+    pageView.d = $j(this).find('.wt_date').val()
+    pageView.t = $j(this).find('.wt_hour').val() +':'+ $j(this).find('.wt_minute').val() +' '+ $j(this).find('.wt_period').val()
+    
+
+    var currId = $j(this).attr('id')
+
+    if(currId == 'topTripplannerForm') {
+      pageView.select = 'VTA Tripplanner'
+      pageView.device = 'Desktop'
+      pageView.type = $j(this).find('.wt_type option:selected').text()
+    } else if(currId == 'g_topTripplannerForm') {
+      pageView.select = 'Google Maps'
+      pageView.device = 'Desktop'
+      pageView.type = $j(this).find('.wt_type option:selected').text()
+    } else if(currId == 'mobileTripPlannerForm') {
+      pageView.select = 'VTA Tripplanner'
+      pageView.device = 'Mobile'
+      
+      if($j(this).find('.wt_type_m').is(":checked")){
+        pageView.type = 'Leave'
+        } else{
+        pageView.type = 'Arrive'
+      }
+    }
+    else{
+      pageView.select = 'Google Maps'
+      pageView.device = 'Mobile'
+
+      if($j(this).find('.wt_type_m').is(":checked")){
+        pageView.type = 'Leave'
+      } else{
+        pageView.type = 'Arrive'
+      }
+    }
+
+    // console.log(pageView)
+    var x = JSON.stringify(pageView);
+    Visualforce.remoting.Manager.invokeAction(
+        '{!$RemoteAction.tripPlanner_Controller.saveTrip}',
+        x,
+        function(result, event){
+            console.log(result);
+        },
+        {escape: true}
+    );
+  })
 });
+
+
 </script>
 <div id="quick-links">
   <script>
@@ -160,24 +221,24 @@ $j(".datepickercalendar").datepicker('setDate',new Date());
       </div>
       <div class="forms">
         <div id="form_vta">
-          <form method="get" id="topTripplannerForm" class="trip_planner_form" target="_blank" action="https://tripplanner.vta.org/planner?" name="trip_planner_form">
+          <form method="get" id="topTripplannerForm" class="trip_planner_form form_wt" target="_blank" action="https://tripplanner.vta.org/planner?" name="trip_planner_form">
             <div class="input-wrapper">
               <div class="input-group">
                 <div class="address">
-                  <input class="inputForm" id="desktopFrom" name="from" type="text" required="true" placeholder="Starting address" title="Trip Starting Address - Enter the address (use city or zip) of where you plan to start your trip"></input>
+                  <input class="inputForm wt_addr_from" id="desktopFrom" name="from" type="text" required="true" placeholder="Starting address" title="Trip Starting Address - Enter the address (use city or zip) of where you plan to start your trip"></input>
                 </div>
                 <div class="address">
-                  <input class="inputForm" id="desktopTo" name="to" type="text" required="true" placeholder="Destination address" title="Trip Destination Address - Enter the address (use city or zip) of where you would like to go"></input>
+                  <input class="inputForm wt_addr_to" id="desktopTo" name="to" type="text" required="true" placeholder="Destination address" title="Trip Destination Address - Enter the address (use city or zip) of where you would like to go"></input>
                 </div>
               </div>
               <div class="input-group">
-                <select name="arriveBy" class="inputForm" style=" margin-left:0; padding-left:0;" title="Leave or arrive options">
+                <select name="arriveBy" class="inputForm wt_type" style=" margin-left:0; padding-left:0;" title="Leave or arrive options">
                   <option value="false">Leave</option>
                   <option value="true">Arrive</option>
                 </select>
-                <input id="datepicker" class="inputForm calendar datepickercalendar" type="text" style="background:url('{!URLFOR($Resource.vta_Org_Website,'images/calendarIcon.png')}') no-repeat; background-position:95%; width:8rem; background-color:white; margin-right:2.5%;"
+                <input id="datepicker" class="inputForm calendar datepickercalendar wt_date" type="text" style="background:url('{!URLFOR($Resource.vta_Org_Website,'images/calendarIcon.png')}') no-repeat; background-position:95%; width:8rem; background-color:white; margin-right:2.5%;"
                 placeholder="mm/dd/yy" title="Trip Date - Enter the date that you plan to take your trip" /> 
-                <select id="hourPicker" class="inputForm time" title="hour options">
+                <select id="hourPicker" class="inputForm time wt_hour" title="hour options">
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -191,7 +252,7 @@ $j(".datepickercalendar").datepicker('setDate',new Date());
                   <option value="11">11</option>
                   <option value="12">12</option>
                 </select>
-                <select name="minute" class="inputForm time" title="minute options">
+                <select name="minute" class="inputForm time wt_minute" title="minute options">
                   <option value="00">00</option>
                   <option value="05">05</option>
                   <option value="10">10</option>
@@ -205,7 +266,7 @@ $j(".datepickercalendar").datepicker('setDate',new Date());
                   <option value="50">50</option>
                   <option value="55">55</option>
                 </select>
-                <select id='period' class="inputForm time period" title="Period: AM or PM Options">
+                <select id='period' class="inputForm time period wt_period" title="Period: AM or PM Options">
                   <option value="am">AM</option>
                   <option value="pm">PM</option>
                 </select>
@@ -217,14 +278,14 @@ $j(".datepickercalendar").datepicker('setDate',new Date());
           </form>
         </div>
         <div id="form_google" class="hidden">
-          <form method="get" id="g_topTripplannerForm" class="trip_planner_form" target="_blank" action="//www.google.com/maps" name="g_trip_planner_form">
+          <form method="get" id="g_topTripplannerForm" class="trip_planner_form form_wt" target="_blank" action="//www.google.com/maps" name="g_trip_planner_form">
             <div class="input-wrapper">
               <div class="input-group">
                 <div class="address">
-                  <input class="g_inputForm" id="g_desktopFrom" name="saddr" type="text" required="true" placeholder="Starting address" title="Trip Starting Address - Enter the address (use city or zip) of where you plan to start your trip"></input>
+                  <input class="g_inputForm wt_addr_from" id="g_desktopFrom" name="saddr" type="text" required="true" placeholder="Starting address" title="Trip Starting Address - Enter the address (use city or zip) of where you plan to start your trip"></input>
                 </div>
                 <div class="address">
-                  <input class="g_inputForm" id="g_desktopTo" name="daddr" type="text" required="true" placeholder="Destination address" title="Trip Destination Address - Enter the address (use city or zip) of where you would like to go">
+                  <input class="g_inputForm wt_addr_to" id="g_desktopTo" name="daddr" type="text" required="true" placeholder="Destination address" title="Trip Destination Address - Enter the address (use city or zip) of where you would like to go">
                   <input type="hidden" name="ie" value="UTF8" />
                   <input type="hidden" name="f" value="d" />
                   <input type="hidden" name="dirflg" value="r" />
@@ -232,13 +293,13 @@ $j(".datepickercalendar").datepicker('setDate',new Date());
                 </div>
               </div>
               <div class="input-group">
-                <select name="ttype" class="g_inputForm" style=" margin-left:0; padding-left:0;" title="Leave or arrive options">
+                <select name="ttype" class="g_inputForm wt_type" style=" margin-left:0; padding-left:0;" title="Leave or arrive options">
                   <option value="dep">Leave</option>
                   <option value="arr">Arrive</option>
                 </select>
-                <input id="g_datepicker" name="date" class="g_inputForm calendar datepickercalendar" type="text" style="background:url('{!URLFOR($Resource.vta_Org_Website,'images/calendarIcon.png')}') no-repeat; background-position:95%; width:8rem; background-color:white; margin-right:2.5%;"
+                <input id="g_datepicker" name="date" class="g_inputForm calendar datepickercalendar wt_date" type="text" style="background:url('{!URLFOR($Resource.vta_Org_Website,'images/calendarIcon.png')}') no-repeat; background-position:95%; width:8rem; background-color:white; margin-right:2.5%;"
                 placeholder="mm/dd/yy" title="Trip Date - Enter the date that you plan to take your trip" />
-                <select id="g_hourPicker" class="g_inputForm time" title="hour options" name="hour">
+                <select id="g_hourPicker" class="g_inputForm time wt_hour" title="hour options" name="hour">
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -252,7 +313,7 @@ $j(".datepickercalendar").datepicker('setDate',new Date());
                   <option value="11">11</option>
                   <option value="12">12</option>
                 </select>
-                <select id="g_minutePicker" name="minute" class="g_inputForm time" title="minute options">
+                <select id="g_minutePicker" name="minute" class="g_inputForm time wt_minute" title="minute options">
                   <option value="00">00</option>
                   <option value="05">05</option>
                   <option value="10">10</option>
@@ -266,7 +327,7 @@ $j(".datepickercalendar").datepicker('setDate',new Date());
                   <option value="50">50</option>
                   <option value="55">55</option>
                 </select>
-                <select id='g_period' class="g_inputForm time period" title="Period: AM or PM Options" name="period">
+                <select id='g_period' class="g_inputForm time period wt_period" title="Period: AM or PM Options" name="period">
                   <option value="am">AM</option>
                   <option value="pm">PM</option>
                 </select>
@@ -293,33 +354,33 @@ $j(".datepickercalendar").datepicker('setDate',new Date());
     </div>
     <div class="forms">
       <div id="form_vta_mobile">
-        <form method="get" id="mobileTripPlannerForm" class="trip_planner_form" target="_blank" action="https://tripplanner.vta.org/planner?" name="trip_planner_form">
+        <form method="get" id="mobileTripPlannerForm" class="trip_planner_form form_wt" target="_blank" action="https://tripplanner.vta.org/planner?" name="trip_planner_form">
 
 
           <div class="input-group address">
             <label for="tpwfrom">From</label>
-            <input name="from" type="text" id="mobileFrom" required="true" placeholder="Starting address" title="Trip Starting Address - Enter the address of where you plan to start your trip" />
+            <input name="from" type="text" id="mobileFrom" class="wt_addr_from" required="true" placeholder="Starting address" title="Trip Starting Address - Enter the address of where you plan to start your trip" />
           </div>
 
           <div class="input-group address">
             <label for="tpwto">To</label>
-            <input name="to" type="text" id="mobileTo" required="true" placeholder="Destination address" title="Trip Destination Address - Enter the address of where you would like to go" />
+            <input name="to" type="text" id="mobileTo" class="wt_addr_to" required="true" placeholder="Destination address" title="Trip Destination Address - Enter the address of where you would like to go" />
           </div>
 
           <div class="input-group arrive-leave-by">
-            <input id="tpwleave" type="radio" name="arriveBy" value="false" checked="true" />
+            <input id="tpwleave" type="radio" class="wt_type_m" name="arriveBy" value="false" checked="true" />
             <label for="tpwleave">Leave</label>
             <input id="tpwarrive" type="radio" name="arriveBy" value="true" />
             <label for="tpwarrive">Arrive</label>
           </div>
 
           <div class="input-group date">
-            <input id="datepickermobile" class="inputForm calendar" type="date" style="background:url('{!URLFOR($Resource.vta_Org_Website,'images/calendarIcon.png')}') no-repeat; background-position:95%; " placeholder="mm/dd/yy" title="Trip Date - Enter the date that you plan to take your trip"
+            <input id="datepickermobile" class="inputForm calendar wt_date" type="date" style="background:url('{!URLFOR($Resource.vta_Org_Website,'images/calendarIcon.png')}') no-repeat; background-position:95%; " placeholder="mm/dd/yy" title="Trip Date - Enter the date that you plan to take your trip"
             />
           </div>
           <div class="input-group time">
             <input id="mobileDate" type="hidden" name="date" />
-            <select id="hourPickerMobile" class="inputForm" title="hour options">
+            <select id="hourPickerMobile" class="inputForm wt_hour" title="hour options">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -333,7 +394,7 @@ $j(".datepickercalendar").datepicker('setDate',new Date());
               <option value="11">11</option>
               <option value="12">12</option>
             </select>
-            <select name="minute" class="inputForm" title="minute options">
+            <select name="minute" class="inputForm wt_minute" title="minute options">
               <option value="00">00</option>
               <option value="05">05</option>
               <option value="10">10</option>
@@ -347,7 +408,7 @@ $j(".datepickercalendar").datepicker('setDate',new Date());
               <option value="50">50</option>
               <option value="55">55</option>
             </select>
-            <select class="inputForm period" title="Period: AM or PM Options" id="periodMobile">
+            <select class="inputForm period wt_period" title="Period: AM or PM Options" id="periodMobile">
               <option value="am">AM</option>
               <option value="pm">PM</option>
             </select>
@@ -358,30 +419,30 @@ $j(".datepickercalendar").datepicker('setDate',new Date());
       </div>
       <div id="form_google_mobile" class="hidden">
         <!-- <form method="get" class="trip_planner_form" target="_blank" action="https://www.google.com/maps" name="trip_planner_form" onSubmit="return storeMobileTrip();"> -->
-        <form method="get" class="trip_planner_form" target="_blank" action="https://www.google.com/maps" name="trip_planner_form">
+        <form method="get" id="form_mobile_wt_google" class="trip_planner_form form_wt" target="_blank" action="https://www.google.com/maps" name="trip_planner_form">
           <div class="input-group address">
             <label for="tpwfrom">From</label>
-            <input name="saddr" type="text" id="g_mobileFrom" required="true" placeholder="Starting address" title="Trip Starting Address - Enter the address of where you plan to start your trip" />
+            <input name="saddr" type="text" id="g_mobileFrom" class="wt_addr_from" required="true" placeholder="Starting address" title="Trip Starting Address - Enter the address of where you plan to start your trip" />
           </div>
           <div class="input-group address">
             <label for="tpwto">To</label>
-            <input name="daddr" type="text" id="g_mobileTo" required="true" placeholder="Destination address" title="Trip Destination Address - Enter the address of where you would like to go" />
+            <input name="daddr" type="text" id="g_mobileTo" class="wt_addr_to" required="true" placeholder="Destination address" title="Trip Destination Address - Enter the address of where you would like to go" />
           </div>
 
           <div class="input-group arrive-leave-by">
-            <input id="tpwleave" type="radio" name="ttype" value="dep" checked="true" />
+            <input id="tpwleave" type="radio" class="wt_type_m" name="ttype" value="dep" checked="true" />
             <label for="tpwleave">Leave</label>
             <input id="tpwarrive" type="radio" name="ttype" value="arr" />
             <label for="tpwarrive">Arrive</label>
           </div>
 
           <div class="input-group date">
-            <input id="g_datepickermobile" class="inputForm calendar" type="date" style="background:url('{!URLFOR($Resource.vta_Org_Website,'images/calendarIcon.png')}') no-repeat; background-position:95%; " placeholder="mm/dd/yy" title="Trip Date - Enter the date that you plan to take your trip"
+            <input id="g_datepickermobile" class="inputForm calendar wt_date" type="date" style="background:url('{!URLFOR($Resource.vta_Org_Website,'images/calendarIcon.png')}') no-repeat; background-position:95%; " placeholder="mm/dd/yy" title="Trip Date - Enter the date that you plan to take your trip"
             />
           </div>
           <div class="input-group time">
             <input id="mobileDate" type="hidden" name="date" />
-            <select id="g_hourPickerMobile" class="inputForm" title="hour options">
+            <select id="g_hourPickerMobile" class="inputForm wt_hour" title="hour options">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -395,7 +456,7 @@ $j(".datepickercalendar").datepicker('setDate',new Date());
               <option value="11">11</option>
               <option value="12">12</option>
             </select>
-            <select name="minute" class="inputForm" title="minute options">
+            <select name="minute" class="inputForm wt_minute" title="minute options">
               <option value="00">00</option>
               <option value="05">05</option>
               <option value="10">10</option>
@@ -409,7 +470,7 @@ $j(".datepickercalendar").datepicker('setDate',new Date());
               <option value="50">50</option>
               <option value="55">55</option>
             </select>
-            <select class="inputForm period" title="Period: AM or PM Options" id="g_periodMobile">
+            <select class="inputForm period wt_period" title="Period: AM or PM Options" id="g_periodMobile">
               <option value="am">AM</option>
               <option value="pm">PM</option>
             </select>
