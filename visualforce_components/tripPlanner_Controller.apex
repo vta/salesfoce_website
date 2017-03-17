@@ -24,5 +24,7 @@ global class tripPlanner_Controller {
         global String type;
         global String d;
         global String t;
+        global String device;
+        global String choice;
     }
 }

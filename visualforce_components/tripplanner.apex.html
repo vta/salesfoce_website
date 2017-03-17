@@ -129,15 +129,15 @@ $j(".datepickercalendar").datepicker('setDate',new Date());
     var currId = $j(this).attr('id')
 
     if(currId == 'topTripplannerForm') {
-      pageView.select = 'VTA Tripplanner'
+      pageView.choice = 'VTA Tripplanner'
       pageView.device = 'Desktop'
       pageView.type = $j(this).find('.wt_type option:selected').text()
     } else if(currId == 'g_topTripplannerForm') {
-      pageView.select = 'Google Maps'
+      pageView.choice = 'Google Maps'
       pageView.device = 'Desktop'
       pageView.type = $j(this).find('.wt_type option:selected').text()
     } else if(currId == 'mobileTripPlannerForm') {
-      pageView.select = 'VTA Tripplanner'
+      pageView.choice = 'VTA Tripplanner'
       pageView.device = 'Mobile'
       
       if($j(this).find('.wt_type_m').is(":checked")){
@@ -147,7 +147,7 @@ $j(".datepickercalendar").datepicker('setDate',new Date());
       }
     }
     else{
-      pageView.select = 'Google Maps'
+      pageView.choice = 'Google Maps'
       pageView.device = 'Mobile'
 
       if($j(this).find('.wt_type_m').is(":checked")){
