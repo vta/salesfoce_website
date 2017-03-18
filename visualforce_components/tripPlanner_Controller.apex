@@ -15,6 +15,8 @@ global class tripPlanner_Controller {
         pv.Type__c = w.type;
         pv.Date__c = w.d;
         pv.Time__c = w.t;
+        pv.device__c = w.device;
+        pv.choice__c = w.choice;
         insert pv;
     }
 
