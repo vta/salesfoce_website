@@ -43,32 +43,32 @@
       minutes = Math.round(minutes / 5) * 5;
       var ampm = hours >= 12 ? 'pm' : 'am';
       hours = hours % 12;
-hours = hours ? hours : 12; // the hour '0' should be '12'
-minutes = minutes < 10 ? '0' + minutes : minutes;
-// var strTime = hours + ':' + minutes + ' ' + ampm;
-$j('#hourPicker').val(hours);
-$j('#g_hourPicker').val(hours);
-$j('#hourPickerMobile').val(hours);
-$j('#g_hourPickerMobile').val(hours);
-$j('.inputForm[name="minute"]').val(minutes);
-$j('.g_inputForm[name="minute"]').val(minutes);
-$j('.period').val(ampm);
-// $j('#g_period').val(ampm);
-// $j('#periodMobile').val(ampm);
-//return strTime;
-}
-setCurrentTime(new Date());
+      hours = hours ? hours : 12; // the hour '0' should be '12'
+      minutes = minutes < 10 ? '0' + minutes : minutes;
+      // var strTime = hours + ':' + minutes + ' ' + ampm;
+      $j('#hourPicker').val(hours);
+      $j('#g_hourPicker').val(hours);
+      $j('#hourPickerMobile').val(hours);
+      $j('#g_hourPickerMobile').val(hours);
+      $j('.inputForm[name="minute"]').val(minutes);
+      $j('.g_inputForm[name="minute"]').val(minutes);
+      $j('.period').val(ampm);
+      // $j('#g_period').val(ampm);
+      // $j('#periodMobile').val(ampm);
+      //return strTime;
+    }
+    setCurrentTime(new Date());
 
-$j('#g_topTripplannerForm').submit(function() {
-  hour = $j('#g_hourPicker option:selected').text();
-  minute = $j('#g_minutePicker option:selected').text();
-  period = $j('#g_period option:selected').text();
-  timeString = hour + ':' + minute + period;
-  $j('#timeField').attr('value', timeString);
-})
+    $j('#g_topTripplannerForm').submit(function() {
+      hour = $j('#g_hourPicker option:selected').text();
+      minute = $j('#g_minutePicker option:selected').text();
+      period = $j('#g_period option:selected').text();
+      timeString = hour + ':' + minute + period;
+      $j('#timeField').attr('value', timeString);
+    })
 
-$j('#topTripplannerForm').submit(function() {
-  hour = $j('#hourPicker option:selected').text();
+    $j('#topTripplannerForm').submit(function() {
+      hour = $j('#hourPicker option:selected').text();
 // minute=$j('.inputForm[name="minute"] option:selected').text();
 period = $j('#period option:selected').text();
 if (period == 'PM' && hour != '12') {
@@ -79,11 +79,11 @@ $j('#hourField').attr({
 });
 // $j('#timeField').attr('value',timeString);
 });
-$j('#mobileTripPlannerForm').submit(function() {
-  var setDate = $j("#datepickermobile").val().split('-');
-  var dateString = ""
-  if (setDate.length > 1) {
-    dateString = setDate[1] + ":" + setDate[2] + ":" + setDate[0]
+    $j('#mobileTripPlannerForm').submit(function() {
+      var setDate = $j("#datepickermobile").val().split('-');
+      var dateString = ""
+      if (setDate.length > 1) {
+        dateString = setDate[1] + ":" + setDate[2] + ":" + setDate[0]
 // var dateString = setDate.getUTCMonth()+1 + ":" +setDate.getUTCDate() + ":" + setDate.getUTCFullYear();
 } else {
   var currentTime = new Date();
@@ -102,73 +102,66 @@ $j('#hourFieldMobile').attr({
   'value': hour
 });
 });
-$j(".datepickercalendar").datepicker({
-  altField: "#altDate",
-  altFormat: 'mm:dd:yy',
-  dateFormat: "mm/dd/yy"
-})
-$j(".datepickercalendar").datepicker('setDate',new Date());
+    $j(".datepickercalendar").datepicker({
+      altField: "#altDate",
+      altFormat: 'mm:dd:yy',
+      dateFormat: "mm/dd/yy"
+    })
+    $j(".datepickercalendar").datepicker('setDate',new Date());
 
-  $j('.form_wt').submit(function(){
-    console.log('form submit')
-    console.log($j(this))
-    console.log($j(this).find('.wt_addr_from').val())
-    console.log($j(this).find('.wt_addr_to').val())
-    console.log($j(this).find('.wt_type option:selected').text())
-    console.log($j(this).find('.wt_date').val())
-    console.log($j(this).find('.wt_hour').val())
-    console.log($j(this).find('.wt_minute').val())
-    console.log($j(this).find('.wt_period').val())
-    var pageView = {};
-    pageView.origin = $j(this).find('.wt_addr_from').val()
-    pageView.destination = $j(this).find('.wt_addr_to').val()
-    pageView.d = $j(this).find('.wt_date').val()
-    pageView.t = $j(this).find('.wt_hour').val() +':'+ $j(this).find('.wt_minute').val() +' '+ $j(this).find('.wt_period').val()
-    
+    $j('.form_wt').submit(function(){
 
-    var currId = $j(this).attr('id')
+      function n(n){
+        return n > 9 ? "" + n: "0" + n;
+      }
 
-    if(currId == 'topTripplannerForm') {
-      pageView.choice = 'VTA Tripplanner'
-      pageView.device = 'Desktop'
-      pageView.type = $j(this).find('.wt_type option:selected').text()
-    } else if(currId == 'g_topTripplannerForm') {
-      pageView.choice = 'Google Maps'
-      pageView.device = 'Desktop'
-      pageView.type = $j(this).find('.wt_type option:selected').text()
-    } else if(currId == 'mobileTripPlannerForm') {
-      pageView.choice = 'VTA Tripplanner'
-      pageView.device = 'Mobile'
-      
-      if($j(this).find('.wt_type_m').is(":checked")){
-        pageView.type = 'Leave'
+      var pageView = {};
+      pageView.origin = $j(this).find('.wt_addr_from').val()
+      pageView.destination = $j(this).find('.wt_addr_to').val()
+      pageView.t = $j(this).find('.wt_hour').val() +':'+ $j(this).find('.wt_minute').val() +' '+ $j(this).find('.wt_period').val()
+
+      var currId = $j(this).attr('id')
+   
+      if(currId == 'topTripplannerForm' || currId == 'g_topTripplannerForm'){  //Desktop Case
+        pageView.device = 'Desktop'        
+        pageView.d = $j(this).find('.wt_date').val()
+        pageView.type = $j(this).find('.wt_type option:selected').text()
+      } else {  //Mobile Case
+        pageView.device = 'Mobile'
+        var mobileDate = $j(this).find('.wt_date').val().split('-')
+
+        if(mobileDate.length > 1){  //Date is set
+          pageView.d = mobileDate[1] + "/" + mobileDate[2] + "/" + mobileDate[0]
+        } else {  //No Date is set
+          var currentTime = new Date();
+          pageView.d = n(currentTime.getUTCMonth() + 1) + "/" + n(currentTime.getUTCDate()) + "/" + currentTime.getUTCFullYear()
+        }
+
+        if($j(this).find('.wt_type_m').is(":checked")){
+          pageView.type = 'Leave'
         } else{
-        pageView.type = 'Arrive'
+          pageView.type = 'Arrive'
+        }
       }
-    }
-    else{
-      pageView.choice = 'Google Maps'
-      pageView.device = 'Mobile'
 
-      if($j(this).find('.wt_type_m').is(":checked")){
-        pageView.type = 'Leave'
-      } else{
-        pageView.type = 'Arrive'
+      if(currId == 'g_topTripplannerForm' || currId == 'form_mobile_wt_google'){  //GMAPS case
+        pageView.choice = 'Google Maps'
+      } else {
+      pageView.choice = 'VTA Tripplanner'  //VTA case
       }
-    }
-
+        
     // console.log(pageView)
     var x = JSON.stringify(pageView);
     Visualforce.remoting.Manager.invokeAction(
-        '{!$RemoteAction.tripPlanner_Controller.saveTrip}',
-        x,
-        function(result, event){
-            console.log(result);
-        },
-        {escape: true}
-    );
+      '{!$RemoteAction.tripPlanner_Controller.saveTrip}',
+      x,
+      function(result, event){
+        // console.log(result);
+      },
+      {escape: true}
+      );
   })
-});
+  });
 
 
 </script>
